@@ -1,7 +1,9 @@
-FROM php:8.1-apache
+FROM php:7.4-apache
+#FROM php:8.1-apache
 
 LABEL maintainer="Vadim Homchik <homchik@gmail.com> (@vh)"
 
+RUN a2enmod headers
 RUN a2enmod rewrite
 
 # install the PHP extensions we need
@@ -26,8 +28,8 @@ RUN { \
 
 VOLUME /var/www/html
 
-ENV MODX_VERSION 3.0.0
-ENV MODX_SHA1 1c2e9b70d8bbea92490b791b0ad375fd2f4946ed
+ARG MODX_VERSION
+ARG MODX_SHA1
 
 # upstream tarballs include ./modx-${MODX_VERSION}/
 RUN curl -o modx.zip -SL http://modx.com/download/direct/modx-${MODX_VERSION}-pl.zip \
