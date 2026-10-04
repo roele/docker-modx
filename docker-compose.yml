@@ -3,7 +3,7 @@ version: '3.1'
 services:
 
   modx:
-    image: modx:3.0.4
+    image: modx:3.2.4
     build:
       context: ./apache
       dockerfile: Dockerfile
@@ -13,7 +13,7 @@ services:
     ports:
       - '8000:80'
     environment:
-      MODX_VERSION: 3.0.4
+      MODX_VERSION: 3.2.4
       MODX_DB_HOST: mariadb:3306
       MODX_DB_PASSWORD: modx
       MODX_DB_USER: modx
@@ -25,7 +25,7 @@ services:
         target: /var/www/html
 
   mariadb:
-    image: mariadb:11.2
+    image: mariadb:12.3.3
     container_name: mariadb
     environment:
       MARIADB_ROOT_PASSWORD: mysql
@@ -42,7 +42,7 @@ services:
 
   phpmyadmin:
     # image: phpmyadmin/phpmyadmin:5.2
-    image: arm64v8/phpmyadmin:5.2
+    image: arm64v8/phpmyadmin:5.2.3
     container_name: phpmyadmin
     depends_on:
       - mariadb
